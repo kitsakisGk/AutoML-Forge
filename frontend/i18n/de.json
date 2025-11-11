@@ -6,6 +6,7 @@
   "tabs": {
     "upload": "📁 Daten Hochladen",
     "profile": "📊 Datenprofil",
+    "clean": "🧹 Daten Bereinigen",
     "train": "🧠 Modelle Trainieren"
   },
   "upload": {
@@ -34,6 +35,24 @@
     "no_missing": "✅ Keine fehlenden Werte gefunden!",
     "data_types": "Datentypen",
     "error": "Fehler beim Erstellen des Profils"
+  },
+  "clean": {
+    "header": "Intelligente Datenbereinigung",
+    "no_file": "⚠️ Bitte laden Sie zuerst eine Datei hoch",
+    "analyze_button": "Datenprobleme Analysieren",
+    "analyzing": "Daten werden analysiert und intelligente Vorschläge generiert...",
+    "no_issues": "✅ Keine Probleme gefunden! Ihre Daten sind sauber.",
+    "issues_found": "{count} potenzielle Probleme gefunden",
+    "apply_button": "Ausgewählte Korrekturen Anwenden",
+    "applying": "Bereinigungstransformationen werden angewendet...",
+    "success": "✅ Daten erfolgreich bereinigt!",
+    "export_script": "📥 Python-Skript Herunterladen",
+    "severity": "Schweregrad",
+    "suggestion": "Vorschlag",
+    "reason": "Warum",
+    "alternatives": "Alternativen",
+    "details": "Details",
+    "error": "Fehler bei der Datenanalyse"
   },
   "train": {
     "header": "Modelle Trainieren",

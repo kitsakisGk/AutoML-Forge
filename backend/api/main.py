@@ -3,7 +3,7 @@ FastAPI Main Application
 """
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from backend.api.routes import health, upload, profile
+from backend.api.routes import health, upload, profile, clean
 
 app = FastAPI(
     title="AutoML Pipeline Builder API",
@@ -26,6 +26,7 @@ app.add_middleware(
 app.include_router(health.router, prefix="/api", tags=["health"])
 app.include_router(upload.router, prefix="/api", tags=["upload"])
 app.include_router(profile.router, prefix="/api", tags=["profile"])
+app.include_router(clean.router, prefix="/api", tags=["clean"])
 
 
 @app.get("/")

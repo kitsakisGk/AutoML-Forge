@@ -6,6 +6,7 @@
   "tabs": {
     "upload": "📁 Upload Data",
     "profile": "📊 Data Profile",
+    "clean": "🧹 Clean Data",
     "train": "🧠 Train Models"
   },
   "upload": {
@@ -34,6 +35,24 @@
     "no_missing": "✅ No missing values found!",
     "data_types": "Data Types",
     "error": "Error generating profile"
+  },
+  "clean": {
+    "header": "Smart Data Cleaning",
+    "no_file": "⚠️ Please upload a file first in the Upload Data tab",
+    "analyze_button": "Analyze Data Issues",
+    "analyzing": "Analyzing data and generating smart suggestions...",
+    "no_issues": "✅ No issues found! Your data looks clean.",
+    "issues_found": "Found {count} potential issues",
+    "apply_button": "Apply Selected Fixes",
+    "applying": "Applying cleaning transformations...",
+    "success": "✅ Data cleaned successfully!",
+    "export_script": "📥 Download Python Script",
+    "severity": "Severity",
+    "suggestion": "Suggestion",
+    "reason": "Why",
+    "alternatives": "Alternatives",
+    "details": "Details",
+    "error": "Error analyzing data"
   },
   "train": {
     "header": "Train Models",
