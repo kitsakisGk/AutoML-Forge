@@ -15,9 +15,10 @@ st.set_page_config(
 )
 
 # Load translations
-with open("frontend/i18n/en.json", "r", encoding="utf-8") as f:
+i18n_dir = Path(__file__).parent / "i18n"
+with open(i18n_dir / "en.json", "r", encoding="utf-8") as f:
     EN = json.load(f)
-with open("frontend/i18n/de.json", "r", encoding="utf-8") as f:
+with open(i18n_dir / "de.json", "r", encoding="utf-8") as f:
     DE = json.load(f)
 
 # Initialize session state

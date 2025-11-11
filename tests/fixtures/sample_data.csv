@@ -1,0 +1,16 @@
+age,income,education,purchased,city
+25,50000,Bachelor,Yes,Zurich
+32,75000,Master,Yes,Geneva
+45,120000,PhD,No,Basel
+28,55000,Bachelor,Yes,Zurich
+38,95000,Master,Yes,Bern
+52,150000,PhD,No,Lausanne
+23,45000,Bachelor,No,Zurich
+41,110000,Master,Yes,Geneva
+29,62000,Bachelor,Yes,Basel
+35,85000,Master,No,Bern
+48,,PhD,Yes,Zurich
+26,52000,Bachelor,Yes,Geneva
+39,98000,,No,Basel
+44,125000,PhD,Yes,Lausanne
+31,72000,Master,Yes,Zurich
