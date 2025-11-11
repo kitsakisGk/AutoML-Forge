@@ -1,0 +1,46 @@
+{
+  "app": {
+    "title": "🤖 AutoML Pipeline Builder",
+    "subtitle": "Build machine learning pipelines automatically - no coding required"
+  },
+  "tabs": {
+    "upload": "📁 Upload Data",
+    "profile": "📊 Data Profile",
+    "train": "🧠 Train Models"
+  },
+  "upload": {
+    "header": "Upload Your Data",
+    "description": "Upload a CSV, Excel, JSON, or Parquet file to get started",
+    "choose_file": "Choose a file",
+    "upload_button": "Upload & Analyze",
+    "uploading": "Uploading and analyzing your data...",
+    "success": "✅ File uploaded successfully!",
+    "error": "Error uploading file",
+    "rows": "Rows",
+    "columns": "Columns",
+    "size": "File Size",
+    "next_step": "👉 Go to the **Data Profile** tab to see detailed analysis"
+  },
+  "profile": {
+    "header": "Data Profile",
+    "no_file": "⚠️ Please upload a file first in the Upload Data tab",
+    "generate_button": "Generate Profile",
+    "generating": "Generating comprehensive data profile...",
+    "basic_info": "Basic Information",
+    "total_rows": "Total Rows",
+    "total_columns": "Total Columns",
+    "memory": "Memory Usage",
+    "missing_values": "Missing Values Analysis",
+    "no_missing": "✅ No missing values found!",
+    "data_types": "Data Types",
+    "error": "Error generating profile"
+  },
+  "train": {
+    "header": "Train Models",
+    "coming_soon": "🚧 Model training coming in Week 5-6!"
+  },
+  "sidebar": {
+    "about": "Automated ML pipeline creation with explainability-first approach. Built for data scientists and ML engineers.",
+    "features": "- 🔄 Auto data cleaning\n- 📈 Smart profiling\n- 🤖 AutoML training\n- 🐳 Docker export\n- 🌍 Bilingual (EN/DE)"
+  }
+}

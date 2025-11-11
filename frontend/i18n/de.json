@@ -1,0 +1,46 @@
+{
+  "app": {
+    "title": "🤖 AutoML Pipeline Builder",
+    "subtitle": "Erstellen Sie Machine-Learning-Pipelines automatisch - keine Programmierung erforderlich"
+  },
+  "tabs": {
+    "upload": "📁 Daten Hochladen",
+    "profile": "📊 Datenprofil",
+    "train": "🧠 Modelle Trainieren"
+  },
+  "upload": {
+    "header": "Laden Sie Ihre Daten Hoch",
+    "description": "Laden Sie eine CSV-, Excel-, JSON- oder Parquet-Datei hoch, um zu beginnen",
+    "choose_file": "Datei auswählen",
+    "upload_button": "Hochladen & Analysieren",
+    "uploading": "Ihre Daten werden hochgeladen und analysiert...",
+    "success": "✅ Datei erfolgreich hochgeladen!",
+    "error": "Fehler beim Hochladen der Datei",
+    "rows": "Zeilen",
+    "columns": "Spalten",
+    "size": "Dateigröße",
+    "next_step": "👉 Gehen Sie zur Registerkarte **Datenprofil**, um eine detaillierte Analyse zu sehen"
+  },
+  "profile": {
+    "header": "Datenprofil",
+    "no_file": "⚠️ Bitte laden Sie zuerst eine Datei auf der Registerkarte 'Daten Hochladen' hoch",
+    "generate_button": "Profil Erstellen",
+    "generating": "Umfassendes Datenprofil wird erstellt...",
+    "basic_info": "Grundlegende Informationen",
+    "total_rows": "Gesamtzeilen",
+    "total_columns": "Gesamtspalten",
+    "memory": "Speichernutzung",
+    "missing_values": "Analyse Fehlender Werte",
+    "no_missing": "✅ Keine fehlenden Werte gefunden!",
+    "data_types": "Datentypen",
+    "error": "Fehler beim Erstellen des Profils"
+  },
+  "train": {
+    "header": "Modelle Trainieren",
+    "coming_soon": "🚧 Modelltraining kommt in Woche 5-6!"
+  },
+  "sidebar": {
+    "about": "Automatisierte ML-Pipeline-Erstellung mit Schwerpunkt auf Erklärbarkeit. Entwickelt für Data Scientists und ML-Engineers.",
+    "features": "- 🔄 Auto-Datenbereinigung\n- 📈 Intelligente Profilerstellung\n- 🤖 AutoML-Training\n- 🐳 Docker-Export\n- 🌍 Zweisprachig (EN/DE)"
+  }
+}
