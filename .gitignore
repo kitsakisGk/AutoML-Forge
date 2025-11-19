@@ -74,3 +74,6 @@ feature_importance.json
 tmp/
 temp/
 *.tmp
+
+# Personal interview guides (keep local only)
+INTERVIEW_DEMO_FLOW_GR.md
