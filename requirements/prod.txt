@@ -1,0 +1,4 @@
+-r base.txt
+
+# Production extras
+gunicorn==21.2.0

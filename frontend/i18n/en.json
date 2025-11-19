@@ -1,0 +1,81 @@
+{
+  "app": {
+    "title": "🤖 AutoML Pipeline Builder",
+    "subtitle": "Build machine learning pipelines automatically - no coding required"
+  },
+  "tabs": {
+    "upload": "📁 Upload Data",
+    "profile": "📊 Data Profile",
+    "clean": "🧹 Clean Data",
+    "train": "🧠 Train Models"
+  },
+  "upload": {
+    "header": "Upload Your Data",
+    "description": "Upload a CSV, Excel, JSON, or Parquet file to get started",
+    "choose_file": "Choose a file",
+    "upload_button": "Upload & Analyze",
+    "uploading": "Uploading and analyzing your data...",
+    "success": "✅ File uploaded successfully!",
+    "error": "Error uploading file",
+    "rows": "Rows",
+    "columns": "Columns",
+    "size": "File Size",
+    "next_step": "👉 Go to the **Data Profile** tab to see detailed analysis"
+  },
+  "profile": {
+    "header": "Data Profile",
+    "no_file": "⚠️ Please upload a file first in the Upload Data tab",
+    "generate_button": "Generate Profile",
+    "generating": "Generating comprehensive data profile...",
+    "basic_info": "Basic Information",
+    "total_rows": "Total Rows",
+    "total_columns": "Total Columns",
+    "memory": "Memory Usage",
+    "missing_values": "Missing Values Analysis",
+    "no_missing": "✅ No missing values found!",
+    "data_types": "Data Types",
+    "error": "Error generating profile"
+  },
+  "clean": {
+    "header": "Smart Data Cleaning",
+    "no_file": "⚠️ Please upload a file first in the Upload Data tab",
+    "analyze_button": "Analyze Data Issues",
+    "analyzing": "Analyzing data and generating smart suggestions...",
+    "no_issues": "✅ No issues found! Your data looks clean.",
+    "issues_found": "Found {count} potential issues",
+    "apply_button": "Apply Selected Fixes",
+    "applying": "Applying cleaning transformations...",
+    "success": "✅ Data cleaned successfully!",
+    "export_script": "📥 Download Python Script",
+    "severity": "Severity",
+    "suggestion": "Suggestion",
+    "reason": "Why",
+    "alternatives": "Alternatives",
+    "details": "Details",
+    "error": "Error analyzing data"
+  },
+  "train": {
+    "header": "AutoML Training",
+    "no_file": "⚠️ Please upload a file first in the Upload Data tab",
+    "select_target": "Select Target Column",
+    "target_help": "Choose the column you want to predict",
+    "test_size": "Test Set Size (%)",
+    "start_training": "🚀 Start Training",
+    "training": "Training models... This may take a minute",
+    "problem_detected": "Problem Type Detected",
+    "models_trained": "Models Trained",
+    "best_model": "🏆 Best Model",
+    "accuracy": "Accuracy",
+    "r2_score": "R² Score",
+    "cv_score": "Cross-Validation Score",
+    "feature_importance": "Top Features",
+    "model_comparison": "Model Comparison",
+    "metrics": "Metrics",
+    "view_details": "View Details",
+    "error": "Error training models"
+  },
+  "sidebar": {
+    "about": "Automated ML pipeline creation with explainability-first approach. Built for data scientists and ML engineers.",
+    "features": "- 🔄 Auto data cleaning\n- 📈 Smart profiling\n- 🤖 AutoML training\n- 🐳 Docker export\n- 🌍 Bilingual (EN/DE)"
+  }
+}
