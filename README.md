@@ -285,9 +285,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **Your Name**
 
-- LinkedIn: [Your LinkedIn](https://linkedin.com/in/yourprofile)
-- GitHub: [@YourGitHub](https://github.com/yourusername)
-- Email: your.email@example.com
+- LinkedIn: [Your LinkedIn]([https://linkedin.com/in/yourprofile](https://www.linkedin.com/in/georgios-kitsakis-gr/))
+- GitHub: [@YourGitHub]([https://github.com/kitsakisGK](https://github.com/kitsakisGk))
+- Email: kitsakisgk@gmail.com
 
 ---
 
@@ -316,5 +316,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 If you find this project useful, please consider giving it a star!
 
 ---
-
-**Built with ❤️ for the data science community**
