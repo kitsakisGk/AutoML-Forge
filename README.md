@@ -285,8 +285,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **Your Name**
 
-- LinkedIn: [Your LinkedIn]([https://linkedin.com/in/yourprofile](https://www.linkedin.com/in/georgios-kitsakis-gr/))
-- GitHub: [@YourGitHub]([https://github.com/kitsakisGK](https://github.com/kitsakisGk))
+- LinkedIn: [Your LinkedIn](https://www.linkedin.com/in/georgios-kitsakis-gr/)
+- GitHub: [@YourGitHub](https://github.com/kitsakisGk)
 - Email: kitsakisgk@gmail.com
 
 ---
