@@ -2,9 +2,12 @@
 
 > **From Raw Data to Trained Models in Minutes - Zero Code Required**
 
-[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+[![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.104+-green.svg)](https://fastapi.tiangolo.com/)
 [![Streamlit](https://img.shields.io/badge/Streamlit-1.28+-red.svg)](https://streamlit.io/)
+[![MLflow](https://img.shields.io/badge/MLflow-2.8+-orange.svg)](https://mlflow.org/)
+[![SHAP](https://img.shields.io/badge/SHAP-Explainability-purple.svg)](https://shap.readthedocs.io/)
+[![CI](https://github.com/kitsakisGk/AutoML-Forge/workflows/CI/badge.svg)](https://github.com/kitsakisGk/AutoML-Forge/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 An **explainability-first AutoML platform** that automatically cleans data and trains ML models. Built for the Swiss market with bilingual support (EN/DE).
