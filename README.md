@@ -10,268 +10,230 @@
 [![CI](https://github.com/kitsakisGk/AutoML-Forge/workflows/CI/badge.svg)](https://github.com/kitsakisGk/AutoML-Forge/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-An **explainability-first AutoML platform** that automatically cleans data and trains ML models. Built for the Swiss market with bilingual support (EN/DE).
+An **explainability-first AutoML platform** that automatically cleans data and trains ML models. Built with FastAPI and Streamlit, featuring MLflow experiment tracking and SHAP model interpretability.
 
-🎯 **Achieved 88.67% R² score** on regression tasks with automatic model selection.
+---
+
+## 🎯 What is This?
+
+AutoML Pipeline Builder is a complete machine learning automation platform that takes you from raw data to production-ready models in minutes. Upload your data, get smart cleaning suggestions with explanations, and automatically train 6 different ML models with full experiment tracking.
+
+**Key Highlights:**
+- ✅ Automatic problem detection (classification vs regression)
+- ✅ Smart data cleaning with explainability - understand every suggestion
+- ✅ Train 6 models automatically: Linear/Ridge, Random Forest, Gradient Boosting, XGBoost, LightGBM
+- ✅ MLflow experiment tracking for reproducibility
+- ✅ SHAP values for model interpretability
+- ✅ Bilingual interface (EN/DE) for Swiss market
+- ✅ Production-ready REST API with OpenAPI documentation
 
 ---
 
 ## ✨ Features
 
-- 🔄 **Automatic Data Cleaning** - Smart detection and fixing of data issues
-- 📊 **Intelligent Data Profiling** - Comprehensive analysis with visualizations
-- 🤖 **AutoML Training** - Train multiple models and compare results automatically
-- 🔬 **MLflow Experiment Tracking** - Production-grade experiment tracking and model versioning
-- 🌍 **Bilingual Interface** - Full support for English and German (EN/DE)
-- 🔒 **Privacy-First** - All processing happens locally, no cloud dependency
-- 🐳 **One-Click Deployment** - Export to Docker, FastAPI, or Python scripts
-- 📈 **Explainability** - Understand every decision with SHAP values
-- 🚀 **Production-Ready** - Generate deployment-ready APIs automatically
+### 📊 Data Profiling
+Comprehensive automatic analysis with statistics, correlations, distributions, and missing value detection.
 
----
+![Data Profile](tests/Screenshots/Data_Profile.jpg)
 
-## 🎯 Perfect For
+### 🧹 Smart Data Cleaning
+Explainability-first cleaning suggestions. Every recommendation comes with reasoning, alternatives, and impact analysis.
 
-- **Data Scientists** - Accelerate your ML workflow
-- **ML Engineers** - Automate pipeline creation
-- **Business Analysts** - Build models without coding
-- **Students** - Learn ML best practices
-- **Researchers** - Rapid prototyping
+![Data Cleaning - Suggestions](tests/Screenshots/Data_Cleaning_1.jpg)
+![Data Cleaning - Details](tests/Screenshots/Data_Cleaning_2.jpg)
+![Data Cleaning - After](tests/Screenshots/Data_Cleaning_3_after_cleaning.jpg)
+
+### 🤖 AutoML Training
+Automatic model selection and training with 5-fold cross-validation. Compare 6 different models side-by-side.
+
+![Upload Data](tests/Screenshots/Upload_data.jpg)
+![Train Models - Selection](tests/Screenshots/Train_models_1.jpg)
+![Train Models - Results](tests/Screenshots/Train_models_2.jpg)
+![Train Models - Comparison](tests/Screenshots/Train_models_3.jpg)
+
+### 🔬 MLflow Integration
+Track every experiment with parameters, metrics, and model artifacts for full reproducibility.
+
+### 🎓 SHAP Explainability
+Understand why your models make predictions with SHAP (SHapley Additive exPlanations) values.
 
 ---
 
 ## 🚀 Quick Start
 
 ### Prerequisites
-
-- Python 3.10 or higher
-- Docker (optional, for containerized deployment)
+- Python 3.9 or higher
+- Virtual environment (recommended)
 
 ### Installation
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/YOUR_USERNAME/automl-forge.git
-cd automl-forge
+git clone https://github.com/kitsakisGk/AutoML-Forge.git
+cd AutoML-Forge
 ```
 
-2. **Create virtual environment**
+2. **Create and activate virtual environment**
 ```bash
+# Windows
 python -m venv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
+venv\Scripts\activate
+
+# Linux/Mac
+python3 -m venv venv
+source venv/bin/activate
 ```
 
 3. **Install dependencies**
 ```bash
-pip install -r requirements/dev.txt
+pip install -r requirements/base.txt
 ```
 
-### Running Locally
+### Running the Application
 
-**Option 1: Run Backend and Frontend Separately**
+**Option 1: Run both backend and frontend separately**
 
+Terminal 1 - Backend:
 ```bash
-# Terminal 1 - Start FastAPI backend
-cd backend
-uvicorn api.main:app --reload --host 0.0.0.0 --port 8000
+python run_backend.py
+```
 
-# Terminal 2 - Start Streamlit frontend
+Terminal 2 - Frontend:
+```bash
 streamlit run frontend/app.py
 ```
 
-**Option 2: Use Docker Compose**
-
+**Option 2: Run everything together**
 ```bash
-cd docker
-docker-compose up --build
+python start_all.py
 ```
 
 Then open:
-- **Frontend**: http://localhost:8501
-- **API Docs**: http://localhost:8000/api/docs
+- **Application UI**: http://localhost:8501
+- **API Documentation**: http://localhost:8000/api/docs
 
 ---
 
-## 📖 Usage
+## 📖 How to Use
 
 ### 1. Upload Your Data
-
-Upload CSV, Excel, JSON, or Parquet files (up to 2GB)
+Upload CSV, Excel, JSON, or Parquet files (up to 2GB). The platform automatically detects file format and encoding.
 
 ### 2. Explore Data Profile
-
-Get automatic insights:
-- Data types and statistics
+Get automatic insights including:
+- Summary statistics (mean, median, std, min, max)
 - Missing values analysis
-- Correlations
+- Feature correlations
 - Distribution visualizations
+- Data type detection
 
-### 3. Clean Your Data ✅
+### 3. Clean Your Data
+Receive smart cleaning suggestions with full explanations:
+- **Missing values**: Imputation strategies with reasoning (median for outliers, mean for normal distributions)
+- **Outliers**: IQR-based detection with impact analysis
+- **Data types**: Automatic type correction recommendations
+- **Alternatives**: Multiple approaches for every issue
 
-Receive explainable smart suggestions:
-- ✅ Missing value detection with imputation strategies
-- ✅ Outlier detection using IQR method
-- ✅ Data type issue identification
-- ✅ Categorical encoding recommendations
-- ✅ Alternative approaches with reasoning
-- ✅ Export Python cleaning script
+Each suggestion explains:
+- ✅ What the issue is
+- ✅ Why the fix is recommended
+- ✅ What alternatives exist
+- ✅ What the impact will be
 
-### 4. Train Models ✅
+### 4. Train Models
+Automatically train and compare 6 different models:
 
-Automatically train and compare 6 models:
-- ✅ Linear/Logistic Regression
-- ✅ Ridge Regression
-- ✅ Random Forest
-- ✅ Gradient Boosting
-- ✅ XGBoost
-- ✅ LightGBM
+**Classification:**
+- Logistic Regression
+- Random Forest
+- Gradient Boosting
+- XGBoost
+- LightGBM
 
-All experiments tracked with MLflow for reproducibility.
+**Regression:**
+- Linear Regression
+- Ridge Regression
+- Random Forest
+- Gradient Boosting
+- XGBoost
+- LightGBM
 
-### 5. View Experiment Tracking 🔬
+**Features:**
+- Automatic problem type detection
+- 5-fold cross-validation for robust evaluation
+- Feature importance analysis
+- Model comparison dashboard
+- Best model selection based on primary metric (accuracy/R²)
 
-Track all ML experiments with MLflow UI:
+### 5. View Experiment Tracking
+
+Track all ML experiments with MLflow:
 
 ```bash
+# Terminal viewer (always works)
+python view_mlflow_results.py
+
+# MLflow web UI (may show blank page on Windows)
 python run_mlflow.py
 ```
 
-Then open http://localhost:5000 to view:
+View:
 - All model runs with parameters and metrics
-- Model comparison charts
-- Feature importance artifacts
 - Cross-validation scores
+- Feature importance artifacts
 - Model artifacts for deployment
-
-Features:
-- Auto problem type detection (classification/regression)
-- 5-fold cross-validation
-- Feature importance visualization
-- Model comparison dashboard
-
-### 5. Deploy to Production (Planned)
-
-Export as:
-- Python script (✅ Available now)
-- Docker image (Coming soon)
-- FastAPI endpoint (Coming soon)
-
----
-
-## 🏗️ Architecture
-
-```
-┌─────────────────────────────────────────────────────┐
-│                 Streamlit Frontend                   │
-│              (Bilingual EN/DE Interface)             │
-└─────────────────┬───────────────────────────────────┘
-                  │ HTTP/REST
-┌─────────────────▼───────────────────────────────────┐
-│                  FastAPI Backend                     │
-│  ┌─────────────┬──────────────┬──────────────────┐  │
-│  │ Data Loader │ Data Profiler│ AutoML Engine    │  │
-│  │ Multi-format│ Smart Analysis│ Model Training   │  │
-│  └─────────────┴──────────────┴──────────────────┘  │
-└─────────────────────────────────────────────────────┘
-                  │
-┌─────────────────▼───────────────────────────────────┐
-│              ML Libraries & Storage                  │
-│  scikit-learn • XGBoost • LightGBM • MLflow         │
-└─────────────────────────────────────────────────────┘
-```
 
 ---
 
 ## 🛠️ Tech Stack
 
-### Backend
-- **FastAPI** - Modern async Python web framework
-- **Pydantic** - Data validation
-- **Pandas/NumPy** - Data processing
+**Backend:**
+- FastAPI - Modern async Python web framework
+- Pydantic - Data validation and settings
+- scikit-learn - Traditional ML algorithms
+- XGBoost/LightGBM - Gradient boosting frameworks
+- SHAP - Model explainability
+- MLflow - Experiment tracking and model versioning
 
-### Machine Learning
-- **scikit-learn** - Traditional ML algorithms
-- **XGBoost/LightGBM** - Gradient boosting
-- **Optuna** - Hyperparameter optimization
-- **SHAP** - Model explainability
-- **MLflow** - Experiment tracking
+**Frontend:**
+- Streamlit - Interactive web UI
+- Plotly - Interactive visualizations
+- i18n support - English/German translations
 
-### Frontend
-- **Streamlit** - Interactive web UI
-- **Plotly** - Interactive visualizations
+**Data Processing:**
+- Pandas/NumPy - Data manipulation
+- ydata-profiling - Automated profiling
 
-### DevOps
-- **Docker** - Containerization
-- **pytest** - Testing framework
-- **GitHub Actions** - CI/CD
-
----
-
-## 📊 Project Status
-
-**Current Phase:** Weeks 1-6 Complete! ✅
-
-| Week | Feature | Status |
-|------|---------|--------|
-| 1-2 | Foundation + Data Upload & Profiling | ✅ Complete |
-| 3-4 | Smart Data Cleaning | ✅ Complete |
-| 5-6 | AutoML Engine | ✅ Complete |
-| 7-8 | MLflow + Docker | 🚧 In Progress |
-| 9-10 | SHAP + Hyperparameter Tuning | 📋 Planned |
-| 11-12 | Polish & Documentation | 📋 Planned |
+**DevOps:**
+- Docker - Containerization
+- pytest - Testing framework
+- GitHub Actions - CI/CD pipeline
 
 ---
 
-## 🧪 Development
-
-### Run Tests
-```bash
-pytest tests/ -v --cov=backend --cov-report=html
-```
-
-### Code Formatting
-```bash
-black backend/ frontend/
-isort backend/ frontend/
-flake8 backend/ frontend/
-```
-
-### Type Checking
-```bash
-mypy backend/
-```
-
----
-
-## 🌍 Internationalization
+## 🌍 Bilingual Support
 
 Fully bilingual interface supporting:
 - 🇬🇧 **English**
-- 🇩🇪 **German** (Swiss focused)
+- 🇩🇪 **German** (Swiss market focus)
 
 Translation files: `frontend/i18n/en.json` and `frontend/i18n/de.json`
 
 ---
 
-## 📝 Documentation
+## 🧪 Testing
 
-Full documentation coming soon at [docs/](docs/)
+Run the test suite:
 
-- [Architecture Overview](docs/architecture.md) (Coming Soon)
-- [API Reference](docs/api-reference.md) (Coming Soon)
-- [User Guide](docs/user-guide.md) (Coming Soon)
+```bash
+# Run all tests
+pytest tests/ -v
 
----
+# Run with coverage
+pytest tests/ -v --cov=backend --cov-report=html
+```
 
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+Tests are automatically run on GitHub Actions for Python 3.9, 3.10, and 3.11.
 
 ---
 
@@ -295,24 +257,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - Built for the Zurich job market with Swiss precision
 - Inspired by modern AutoML tools (H2O.ai, AutoGluon, PyCaret)
-- Focus on explainability and privacy
-
----
-
-## 📈 Roadmap
-
-### Planned Features
-- [ ] Advanced feature engineering
-- [ ] Time series forecasting
-- [ ] Natural language data queries
-- [ ] Model drift detection
-- [ ] A/B testing framework
-- [ ] Team collaboration features
-
----
-
-## ⭐ Star History
-
-If you find this project useful, please consider giving it a star!
-
----
+- Focus on explainability and production-readiness
