@@ -31,6 +31,11 @@ AutoML Pipeline Builder is a complete machine learning automation platform that 
 
 ## ✨ Features
 
+### 📤 Data Upload
+Upload CSV, Excel, JSON, or Parquet files with automatic format detection.
+
+![Upload Data](tests/Screenshots/Upload_data.jpg)
+
 ### 📊 Data Profiling
 Comprehensive automatic analysis with statistics, correlations, distributions, and missing value detection.
 
@@ -46,7 +51,6 @@ Explainability-first cleaning suggestions. Every recommendation comes with reaso
 ### 🤖 AutoML Training
 Automatic model selection and training with 5-fold cross-validation. Compare 6 different models side-by-side.
 
-![Upload Data](tests/Screenshots/Upload_data.jpg)
 ![Train Models - Selection](tests/Screenshots/Train_models_1.jpg)
 ![Train Models - Results](tests/Screenshots/Train_models_2.jpg)
 ![Train Models - Comparison](tests/Screenshots/Train_models_3.jpg)
@@ -255,6 +259,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🙏 Acknowledgments
 
-- Built for the Zurich job market with Swiss precision
 - Inspired by modern AutoML tools (H2O.ai, AutoGluon, PyCaret)
 - Focus on explainability and production-readiness
+- Built with attention to code quality and best practices
