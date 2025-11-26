@@ -286,7 +286,31 @@ with tab3:
 
         # Check if we have a best model
         if summary.get('best_model'):
-            st.success(f"🏆 Best Model: **{summary['best_model']}**")
+            col1, col2 = st.columns([3, 1])
+            with col1:
+                st.success(f"🏆 Best Model: **{summary['best_model']}**")
+            with col2:
+                # Download button for best model
+                dataset_id = summary.get('dataset_id')
+                if dataset_id and st.button("💾 Download Best Model", type="primary"):
+                    with st.spinner("Preparing model download..."):
+                        try:
+                            download_url = f"{API_BASE_URL}/cv/models/{dataset_id}/download"
+                            response = requests.get(download_url, timeout=30)
+
+                            if response.status_code == 200:
+                                # Trigger download
+                                st.download_button(
+                                    label="⬇️ Click to Download .pth file",
+                                    data=response.content,
+                                    file_name=f"{summary['best_model']}_model.pth",
+                                    mime="application/octet-stream"
+                                )
+                                st.success("✅ Model ready for download!")
+                            else:
+                                st.error(f"Failed to download model: {response.text}")
+                        except Exception as e:
+                            st.error(f"Error: {str(e)}")
         else:
             st.error("❌ All models failed to train. Please check the error messages below.")
 
@@ -426,7 +450,7 @@ with tab4:
     st.markdown("""
     Upload an image to get predictions from your trained model. The model will show:
     - Top 3 class predictions with confidence scores
-    - **Grad-CAM heatmap** showing which parts of the image the model focused on
+    - **Grad-CAM heatmap** (optional) showing which parts of the image the model focused on
     - Model accuracy from training
     """)
 
@@ -434,6 +458,13 @@ with tab4:
         dataset_id = st.session_state.cv_dataset_id
 
         st.info(f"📦 **Using model trained on dataset:** `{dataset_id}`")
+
+        # Grad-CAM toggle
+        enable_gradcam = st.checkbox(
+            "🎨 Enable Grad-CAM Visualization",
+            value=False,
+            help="Show heatmap of which image regions the model focuses on (interpretability)"
+        )
 
         # Upload test image
         uploaded_test_image = st.file_uploader(
@@ -455,16 +486,19 @@ with tab4:
                 st.subheader("🔮 Predictions")
 
                 if st.button("Predict", type="primary"):
-                    with st.spinner("Analyzing image..."):
+                    with st.spinner("Analyzing image..." + (" (generating Grad-CAM...)" if enable_gradcam else "")):
                         try:
+                            # Choose endpoint based on Grad-CAM toggle
+                            if enable_gradcam:
+                                endpoint = f"{API_BASE_URL}/cv/predict/gradcam/{dataset_id}"
+                            else:
+                                endpoint = f"{API_BASE_URL}/cv/predict/{dataset_id}"
+
                             # Send prediction request
                             files = {
                                 "file": (uploaded_test_image.name, uploaded_test_image.getvalue())
                             }
-                            response = requests.post(
-                                f"{API_BASE_URL}/cv/predict/{dataset_id}",
-                                files=files
-                            )
+                            response = requests.post(endpoint, files=files, timeout=60)
 
                             if response.status_code == 200:
                                 result = response.json()
@@ -483,6 +517,25 @@ with tab4:
                                         f"{color} **{i}. {pred['class']}** - {confidence:.2%}"
                                     )
                                     st.progress(confidence)
+
+                                # Show Grad-CAM if enabled and available
+                                if enable_gradcam and result.get('has_gradcam') and result.get('overlay_base64'):
+                                    st.markdown("---")
+                                    st.markdown("### 🎨 Grad-CAM Visualization")
+                                    st.markdown("Heatmap showing which image regions the model focused on:")
+
+                                    # Decode and display overlay image
+                                    import base64
+                                    overlay_bytes = base64.b64decode(result['overlay_base64'])
+                                    st.image(overlay_bytes, caption="Grad-CAM Overlay (Red = High attention)", use_container_width=True)
+
+                                    st.info("💡 **Tip**: Red/yellow regions show where the model focused most to make its prediction.")
+
+                                elif enable_gradcam and not result.get('has_gradcam'):
+                                    if result.get('error'):
+                                        st.warning(f"⚠️ Grad-CAM unavailable: {result.get('error')}")
+                                    else:
+                                        st.warning("⚠️ Grad-CAM not available for this model.")
 
                             else:
                                 st.error(f"Prediction failed: {response.text}")

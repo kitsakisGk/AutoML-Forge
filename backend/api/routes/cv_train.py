@@ -232,6 +232,75 @@ async def predict_image(dataset_id: str, file: UploadFile = File(...)):
         raise HTTPException(status_code=500, detail=str(e))
 
 
+@router.post("/cv/predict/gradcam/{dataset_id}")
+async def predict_with_gradcam(dataset_id: str, file: UploadFile = File(...)):
+    """
+    Make prediction with Grad-CAM visualization
+
+    Args:
+        dataset_id: ID of the dataset (used to find trained model)
+        file: Image file to predict
+
+    Returns:
+        Predictions with Grad-CAM heatmap and overlay
+    """
+    try:
+        model_dir = UPLOAD_DIR / f"{dataset_id}_model"
+
+        if not model_dir.exists():
+            raise HTTPException(
+                status_code=404,
+                detail="Trained model not found. Please train a model first."
+            )
+
+        # Load predictor
+        predictor = CVPredictor(str(model_dir))
+
+        # Read and preprocess image
+        image_bytes = await file.read()
+        pil_image = Image.open(io.BytesIO(image_bytes))
+        image_array = np.array(pil_image)
+
+        # Make prediction with Grad-CAM
+        result = predictor.visualize_prediction(image_array, top_k=3)
+
+        # Get model info
+        model_info = predictor.get_model_info()
+
+        # Convert numpy arrays to base64 for JSON transmission
+        if result.get('has_gradcam'):
+            import base64
+            from io import BytesIO
+            from PIL import Image as PILImage
+
+            # Convert overlay to base64
+            overlay_array = np.array(result['overlay'], dtype=np.uint8)
+            overlay_image = PILImage.fromarray(overlay_array)
+            buffered = BytesIO()
+            overlay_image.save(buffered, format="PNG")
+            overlay_base64 = base64.b64encode(buffered.getvalue()).decode()
+
+            result['overlay_base64'] = overlay_base64
+            # Remove large arrays from response
+            del result['overlay']
+            del result['heatmap']
+
+        return {
+            "status": "success",
+            "predictions": result['predictions'],
+            "has_gradcam": result.get('has_gradcam', False),
+            "overlay_base64": result.get('overlay_base64'),
+            "error": result.get('error'),
+            "model_info": {
+                "model_name": model_info['model_name'],
+                "accuracy": model_info['metrics']['accuracy']
+            }
+        }
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
 @router.get("/cv/models/{dataset_id}/download")
 async def download_model(dataset_id: str):
     """
