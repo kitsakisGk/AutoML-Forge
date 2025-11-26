@@ -29,4 +29,4 @@ def test_root_endpoint():
 
     assert "message" in data
     assert "version" in data
-    assert data["version"] == "0.1.0"
+    assert data["version"] == "0.2.0"
