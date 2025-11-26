@@ -3,12 +3,12 @@ FastAPI Main Application
 """
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from backend.api.routes import health, upload, profile, clean, train
+from backend.api.routes import health, upload, profile, clean, train, cv_train
 
 app = FastAPI(
     title="AutoML Pipeline Builder API",
-    description="Automated ML pipeline creation and model training API",
-    version="0.1.0",
+    description="Automated ML pipeline creation and model training API with Computer Vision support",
+    version="0.2.0",
     docs_url="/api/docs",
     redoc_url="/api/redoc"
 )
@@ -28,14 +28,16 @@ app.include_router(upload.router, prefix="/api", tags=["upload"])
 app.include_router(profile.router, prefix="/api", tags=["profile"])
 app.include_router(clean.router, prefix="/api", tags=["clean"])
 app.include_router(train.router, prefix="/api", tags=["train"])
+app.include_router(cv_train.router, prefix="/api", tags=["computer-vision"])
 
 
 @app.get("/")
 async def root():
     """Root endpoint"""
     return {
-        "message": "AutoML Pipeline Builder API",
-        "version": "0.1.0",
+        "message": "AutoML Pipeline Builder API with Computer Vision",
+        "version": "0.2.0",
+        "features": ["tabular-ml", "computer-vision"],
         "docs": "/api/docs"
     }
 

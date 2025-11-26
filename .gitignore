@@ -75,5 +75,13 @@ tmp/
 temp/
 *.tmp
 
+# Sample datasets (extracted folders only - keep ZIPs in repo)
+sample_datasets/fashion_mnist/
+sample_datasets/shapes/
+
 # Personal interview guides (keep local only)
 INTERVIEW_DEMO_FLOW_GR.md
+
+# PyTorch model cache
+.cache/
+torch/hub/

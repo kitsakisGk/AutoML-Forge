@@ -8,8 +8,8 @@ import json
 
 # Page configuration
 st.set_page_config(
-    page_title="AutoML Pipeline Builder",
-    page_icon="🤖",
+    page_title="AutoML Forge - Tabular ML",
+    page_icon="📊",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -142,7 +142,7 @@ with tab2:
                                 })
 
                         if missing_data:
-                            st.dataframe(missing_data, use_container_width=True)
+                            st.dataframe(missing_data, width='stretch')
                         else:
                             st.success(t["profile"]["no_missing"])
 
@@ -152,7 +152,7 @@ with tab2:
                             {"Column": col, "Type": dtype}
                             for col, dtype in profile["dtypes"].items()
                         ]
-                        st.dataframe(dtypes_data, use_container_width=True)
+                        st.dataframe(dtypes_data, width='stretch')
 
                     else:
                         st.error(f"{t['profile']['error']}: {response.text}")
@@ -440,7 +440,7 @@ with tab4:
                                             "CV Score": f"{result['cv_score_mean']:.4f}"
                                         })
 
-                            st.dataframe(comparison_data, use_container_width=True)
+                            st.dataframe(comparison_data, width='stretch')
 
                             # Feature importance
                             if best_result.get("feature_importance"):
@@ -463,7 +463,7 @@ with tab4:
                                     yaxis={'categoryorder':'total ascending'},
                                     height=400
                                 )
-                                st.plotly_chart(fig, use_container_width=True)
+                                st.plotly_chart(fig, width='stretch')
 
                             # MLflow tracking info
                             st.markdown("---")

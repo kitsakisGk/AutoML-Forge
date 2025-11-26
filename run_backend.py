@@ -8,5 +8,6 @@ if __name__ == "__main__":
         "backend.api.main:app",
         host="0.0.0.0",
         port=8000,
-        reload=True
+        reload=True,
+        timeout_keep_alive=600  # 10 minutes for CV training
     )

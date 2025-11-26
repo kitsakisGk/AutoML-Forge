@@ -1,35 +1,52 @@
 # 🤖 AutoML Pipeline Builder
 
-> **From Raw Data to Trained Models in Minutes - Zero Code Required**
+> **From Raw Data to Production Models in Minutes - Zero Code Required**
 
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.104+-green.svg)](https://fastapi.tiangolo.com/)
 [![Streamlit](https://img.shields.io/badge/Streamlit-1.28+-red.svg)](https://streamlit.io/)
+[![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-red.svg)](https://pytorch.org/)
 [![MLflow](https://img.shields.io/badge/MLflow-2.8+-orange.svg)](https://mlflow.org/)
 [![SHAP](https://img.shields.io/badge/SHAP-Explainability-purple.svg)](https://shap.readthedocs.io/)
-[![CI](https://github.com/kitsakisGk/AutoML-Forge/workflows/CI/badge.svg)](https://github.com/kitsakisGk/AutoML-Forge/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-An **explainability-first AutoML platform** that automatically cleans data and trains ML models. Built with FastAPI and Streamlit, featuring MLflow experiment tracking and SHAP model interpretability.
+An **explainability-first AutoML platform** for both **Tabular ML** and **Computer Vision**. Upload your data, train state-of-the-art models automatically, and get production-ready predictions with interpretability. Built with FastAPI, Streamlit, PyTorch, and featuring MLflow experiment tracking.
 
 ---
 
 ## 🎯 What is This?
 
-AutoML Pipeline Builder is a complete machine learning automation platform that takes you from raw data to production-ready models in minutes. Upload your data, get smart cleaning suggestions with explanations, and automatically train 6 different ML models with full experiment tracking.
+AutoML Pipeline Builder is a complete machine learning automation platform that supports both **Tabular ML** and **Computer Vision**. Upload your data (CSV or images), get smart cleaning suggestions, train multiple state-of-the-art models automatically, and make production-ready predictions with interpretability.
 
 **Key Highlights:**
+
+### 📊 Tabular ML
 - ✅ Automatic problem detection (classification vs regression)
-- ✅ Smart data cleaning with explainability - understand every suggestion
-- ✅ Train 6 models automatically: Linear/Ridge, Random Forest, Gradient Boosting, XGBoost, LightGBM
-- ✅ MLflow experiment tracking for reproducibility
+- ✅ Smart data cleaning with explainability
+- ✅ Train 6 models: Linear/Ridge, Random Forest, Gradient Boosting, XGBoost, LightGBM
 - ✅ SHAP values for model interpretability
-- ✅ Bilingual interface (EN/DE) for Swiss market
-- ✅ Production-ready REST API with OpenAPI documentation
+- ✅ Bilingual interface (EN/DE)
+
+### 📸 Computer Vision (NEW!)
+- ✅ **Vision Transformers (ViT)** - State-of-the-art from Google
+- ✅ **4 Model Comparison**: MobileNetV3, ResNet18, EfficientNet-B0, ViT-Base
+- ✅ **Transfer Learning** from ImageNet (1.2M images)
+- ✅ **Grad-CAM Visualization** - See what the model focuses on
+- ✅ **Confusion Matrix** - Per-class performance metrics
+- ✅ **Real-time Predictions** - Upload image → get predictions
+- ✅ **Model Export** - Download trained models (.pth)
+
+### 🔧 Production Features
+- ✅ MLflow experiment tracking
+- ✅ REST API with OpenAPI docs
+- ✅ Model versioning & download
+- ✅ Automated testing
 
 ---
 
 ## ✨ Features
+
+## 📊 Tabular ML Pipeline
 
 ### 📤 Data Upload
 Upload CSV, Excel, JSON, or Parquet files with automatic format detection.
@@ -60,6 +77,55 @@ Track every experiment with parameters, metrics, and model artifacts for full re
 
 ### 🎓 SHAP Explainability
 Understand why your models make predictions with SHAP (SHapley Additive exPlanations) values.
+
+---
+
+## 📸 Computer Vision Pipeline
+
+### 🤖 4 State-of-the-Art Models
+Train and compare 4 modern architectures automatically:
+- **MobileNetV3**: Super fast, mobile-optimized (~1-2 min)
+- **ResNet18**: Lightweight CNN, fast training (~1-2 min)
+- **EfficientNet-B0**: Balanced speed/accuracy (~2-3 min)
+- **ViT-Base**: Vision Transformer from Google, state-of-the-art (~5-8 min)
+
+**Total training time: ~10-12 minutes** on slow PC (fast models finish first!)
+
+### 📤 Upload Image Datasets
+Simple ZIP upload with folder-per-class structure:
+```
+dataset.zip
+  /class1
+    image1.jpg
+    image2.jpg
+  /class2
+    image1.jpg
+    image2.jpg
+```
+
+Supports: JPG, PNG, BMP, TIFF, WEBP | Handles grayscale and RGB | Smart nested structure detection
+
+### 🔮 Real-time Predictions
+Upload any image → get instant predictions with:
+- **Top 3 classes** with confidence scores
+- **Grad-CAM heatmaps** showing what the model focuses on (interpretability!)
+- Model accuracy from training
+
+### 📊 Advanced Metrics
+- **Confusion Matrix** - See which classes are confused
+- **Per-class Precision/Recall/F1** - Detailed performance breakdown
+- **MLflow Tracking** - Every experiment logged automatically
+
+### 💾 Model Export
+Download trained models (.pth format) for production deployment
+
+### 🎯 Transfer Learning
+All models use pre-trained ImageNet weights (1.2M images, 1000 classes):
+- ✅ Better accuracy with less data
+- ✅ Faster training (minutes vs days)
+- ✅ Production-ready performance
+
+**See full CV guide:** [CV_QUICKSTART.md](CV_QUICKSTART.md)
 
 ---
 
