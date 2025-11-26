@@ -82,8 +82,18 @@ Understand why your models make predictions with SHAP (SHapley Additive exPlanat
 
 ## 📸 Computer Vision Pipeline
 
-### 🤖 4 State-of-the-Art Models
-Train and compare 4 modern architectures automatically:
+### 📤 Upload Image Datasets
+Simple ZIP upload with folder-per-class structure. Supports: JPG, PNG, BMP, TIFF, WEBP | Handles grayscale and RGB | Smart nested structure detection
+
+![CV Upload](tests/Screenshots/Computer_Vision_upload_file.jpg)
+
+### 📊 Dataset Statistics
+Automatic analysis of your image dataset with class distribution and sample counts.
+
+![CV File Stats](tests/Screenshots/Computer_Vision_file_stats.jpg)
+
+### 🤖 Train 4 State-of-the-Art Models
+Automatic training with transfer learning from ImageNet:
 - **MobileNetV3**: Super fast, mobile-optimized (~1-2 min)
 - **ResNet18**: Lightweight CNN, fast training (~1-2 min)
 - **EfficientNet-B0**: Balanced speed/accuracy (~2-3 min)
@@ -91,39 +101,40 @@ Train and compare 4 modern architectures automatically:
 
 **Total training time: ~10-12 minutes** on slow PC (fast models finish first!)
 
-### 📤 Upload Image Datasets
-Simple ZIP upload with folder-per-class structure:
-```
-dataset.zip
-  /class1
-    image1.jpg
-    image2.jpg
-  /class2
-    image1.jpg
-    image2.jpg
-```
+![CV Train Models](tests/Screenshots/Computer_Vision_train_models.jpg)
 
-Supports: JPG, PNG, BMP, TIFF, WEBP | Handles grayscale and RGB | Smart nested structure detection
+### 📊 Model Comparison & Results
+Compare all models side-by-side with accuracy metrics and training history.
+
+![CV Model Comparison](tests/Screenshots/Computer_Vision_model_comparison.jpg)
+
+### 📈 Detailed Performance Metrics
+Confusion matrix and per-class precision/recall/F1 scores for deep analysis.
+
+![CV Detailed Comparison](tests/Screenshots/Computer_Vision_model_comparison_detailed.jpg)
 
 ### 🔮 Real-time Predictions
-Upload any image → get instant predictions with:
-- **Top 3 classes** with confidence scores
-- **Grad-CAM heatmaps** showing what the model focuses on (interpretability!)
-- Model accuracy from training
+Upload any image → get instant predictions with top 3 classes and confidence scores.
 
-### 📊 Advanced Metrics
-- **Confusion Matrix** - See which classes are confused
-- **Per-class Precision/Recall/F1** - Detailed performance breakdown
+![CV Predictions Tab](tests/Screenshots/Computer_Vision_predictions.jpg)
+
+### 🎯 Image Prediction Results
+See predictions with confidence bars and model metadata.
+
+![CV Image Prediction](tests/Screenshots/Computer_Vision_image_prediction.jpg)
+
+### 📊 Prediction Details
+Detailed view with uploaded image and prediction breakdown.
+
+![CV Predicted Details](tests/Screenshots/Computer_Vision_predicted_details.jpg)
+
+### 🎓 Key Features
+- **Grad-CAM Visualization** - See what the model focuses on (interpretability!)
+- **Confusion Matrix** - Which classes are confused
+- **Per-class Metrics** - Precision/Recall/F1 breakdown
 - **MLflow Tracking** - Every experiment logged automatically
-
-### 💾 Model Export
-Download trained models (.pth format) for production deployment
-
-### 🎯 Transfer Learning
-All models use pre-trained ImageNet weights (1.2M images, 1000 classes):
-- ✅ Better accuracy with less data
-- ✅ Faster training (minutes vs days)
-- ✅ Production-ready performance
+- **Model Export** - Download trained models (.pth format)
+- **Transfer Learning** - Pre-trained ImageNet weights (1.2M images, 1000 classes)
 
 **See full CV guide:** [CV_QUICKSTART.md](CV_QUICKSTART.md)
 
@@ -170,7 +181,7 @@ python run_backend.py
 
 Terminal 2 - Frontend:
 ```bash
-streamlit run frontend/app.py
+streamlit run frontend/AutoML_Forge.py
 ```
 
 **Option 2: Run everything together**

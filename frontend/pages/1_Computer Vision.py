@@ -448,7 +448,7 @@ with tab4:
 
             with col1:
                 st.subheader("📷 Input Image")
-                st.image(uploaded_test_image, use_column_width=True)
+                st.image(uploaded_test_image, use_container_width=True)
 
             # Make prediction
             with col2:
@@ -523,7 +523,7 @@ with tab4:
                             height=400
                         )
 
-                        st.plotly_chart(fig, use_column_width=True)
+                        st.plotly_chart(fig, config={'displayModeBar': True}, use_container_width=True)
 
                     with col2:
                         st.markdown("#### Per-Class Metrics")
