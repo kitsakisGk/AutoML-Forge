@@ -68,7 +68,7 @@ if uploaded_file is not None:
 
         with col1:
             st.subheader("📷 Input Image")
-            st.image(image, use_container_width=True)
+            st.image(image, width=None)
 
         with col2:
             st.subheader("🔮 Predictions")
@@ -186,7 +186,7 @@ if uploaded_file is not None:
                                     visualization = show_cam_on_image(rgb_img, grayscale_cam, use_rgb=True)
 
                                     # Display Grad-CAM
-                                    st.image(visualization, caption=f"Grad-CAM for '{labels[target_class].title()}'", use_container_width=True)
+                                    st.image(visualization, caption=f"Grad-CAM for '{labels[target_class].title()}'", width=None)
                                     st.info("💡 **Tip**: Red/yellow regions show where the model focused most to make its prediction.")
                                 else:
                                     st.warning("⚠️ Grad-CAM not available for this model architecture.")
