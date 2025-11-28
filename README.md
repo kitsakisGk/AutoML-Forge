@@ -10,6 +10,8 @@
 [![SHAP](https://img.shields.io/badge/SHAP-Explainability-purple.svg)](https://shap.readthedocs.io/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
+**🎯 [Try Live Demo on HuggingFace Spaces](https://huggingface.co/spaces/kitsakisG/automl-forge)** 🚀
+
 An **explainability-first AutoML platform** for both **Tabular ML** and **Computer Vision**. Upload your data, train state-of-the-art models automatically, and get production-ready predictions with interpretability. Built with FastAPI, Streamlit, PyTorch, and featuring MLflow experiment tracking.
 
 ---
@@ -136,7 +138,7 @@ Detailed view with uploaded image and prediction breakdown.
 - **Model Export** - Download trained models (.pth format)
 - **Transfer Learning** - Pre-trained ImageNet weights (1.2M images, 1000 classes)
 
-**See full CV guide:** [CV_QUICKSTART.md](CV_QUICKSTART.md)
+**See full CV guide:** [CV_QUICKSTART.md](docs/CV_QUICKSTART.md)
 
 ---
 
@@ -197,50 +199,28 @@ Then open:
 
 ## 🌐 Production Deployment
 
-### Deploy to HuggingFace Spaces (Recommended - FREE!)
+### 🎯 Live Demo (HuggingFace Spaces)
 
-Quick 5-minute deployment to showcase your CV demo live:
+**Try it now**: [https://huggingface.co/spaces/kitsakisG/automl-forge](https://huggingface.co/spaces/kitsakisG/automl-forge)
 
-1. **Create Space** at https://huggingface.co/spaces
-   - Choose **Streamlit** SDK
-   - Select **CPU basic** (free tier)
+This demo showcases the Computer Vision module with 4 pre-trained models for instant image classification.
 
-2. **Clone and deploy:**
-```bash
-git clone https://huggingface.co/spaces/YOUR_USERNAME/your-space-name
-cd your-space-name
+### Deploy Your Own
 
-# Copy demo files
-cp /path/to/AutoML-Forge/app_hf.py app.py
-cp /path/to/AutoML-Forge/requirements_hf.txt requirements.txt
+**HuggingFace Spaces (FREE):**
+- See deployment guide: [deployment/README_HF_SPACES.md](deployment/README_HF_SPACES.md)
+- Run deployment script: `deployment/deploy_to_hf.bat`
+- Live in 5 minutes!
 
-# Push to HuggingFace
-git add .
-git commit -m "Deploy AutoML Forge CV Demo"
-git push
-```
+**Docker Deployment:**
+- See Docker guide: [docker/README.md](docker/README.md)
+- Single command: `docker-compose up`
+- Production-ready containers
 
-3. **Live in 3-5 minutes!** 🎉
-
-Your demo will be at: `https://huggingface.co/spaces/YOUR_USERNAME/your-space-name`
-
-**See full deployment guide:** [README_HF_SPACES.md](README_HF_SPACES.md)
-
-### Other Deployment Options
-
-**Railway.app** (Full platform with backend):
-- Deploy both FastAPI backend and Streamlit frontend
-- Free tier available
-- GitHub integration
-
-**Render.com** (Full platform):
-- Free tier for web services
-- Docker support
-- Auto-deploy from GitHub
-
-**Vercel** (Frontend only):
-- Deploy Streamlit frontend
-- Backend needs separate hosting (Railway/Render)
+**Other Platforms:**
+- **Railway.app**: Full platform with backend (free tier)
+- **Render.com**: Docker support, auto-deploy
+- **Vercel**: Frontend only (backend separate)
 
 ---
 
