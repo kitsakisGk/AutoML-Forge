@@ -201,9 +201,32 @@ Then open:
 
 ### 🎯 Live Demo (HuggingFace Spaces)
 
-**Try it now**: [https://huggingface.co/spaces/kitsakisG/automl-forge](https://huggingface.co/spaces/kitsakisG/automl-forge)
+**Try it now**: [https://huggingface.co/spaces/kitsakisG/automl-forge](https://huggingface.co/spaces/kitsakisG/automl-forge) 🚀
 
-This demo showcases the Computer Vision module with 4 pre-trained models for instant image classification.
+Experience the Computer Vision module live with 4 state-of-the-art models and **Grad-CAM visualization**!
+
+#### Upload & Predict
+Upload any image and select from 4 pre-trained models (MobileNetV3, ResNet18, EfficientNet-B0, ViT-Base).
+
+![HF Demo - Upload](tests/Screenshots/Hugging_Face_space_uploading_image.jpg)
+
+#### Instant Predictions
+Get top-5 predictions with confidence scores instantly. Toggle Grad-CAM to see model interpretability!
+
+![HF Demo - Predictions](tests/Screenshots/Hugging_Face_space_Details_predicted.jpg)
+
+#### About & Features
+Learn more about the models and full platform capabilities.
+
+![HF Demo - About](tests/Screenshots/Hugging_Face_space_details_about.jpg)
+
+**Features in Live Demo:**
+- ✅ 4 Pre-trained Models (ImageNet)
+- ✅ Real-time Predictions
+- ✅ Top-5 Confidence Scores
+- ✅ **Grad-CAM Visualization** (Toggle on/off)
+- ✅ Model Interpretability
+- ✅ Free Public Access
 
 ### Deploy Your Own
 
