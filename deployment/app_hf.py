@@ -10,10 +10,7 @@ import timm
 from transformers import ViTForImageClassification, ViTImageProcessor
 from PIL import Image
 import numpy as np
-import io
-import zipfile
-from pathlib import Path
-import tempfile
+import cv2
 
 st.set_page_config(
     page_title="AutoML Forge - CV Demo",
@@ -27,7 +24,7 @@ st.markdown("""
 This is a simplified demo version. For the full platform with AutoML training, see the [GitHub repository](https://github.com/kitsakisGk/AutoML-Forge).
 """)
 
-st.info("🎯 **Try it:** Upload an image and select a pre-trained model for instant predictions!")
+st.info("🎯 **Try it:** Upload an image, select a model, and optionally enable Grad-CAM to see what the model focuses on!")
 
 # Model selection
 model_choice = st.selectbox(
@@ -38,6 +35,13 @@ model_choice = st.selectbox(
         "EfficientNet-B0 (Balanced)",
         "ViT-Base (State-of-the-art Transformer)"
     ]
+)
+
+# Grad-CAM toggle
+enable_gradcam = st.checkbox(
+    "🎨 Enable Grad-CAM Visualization",
+    value=False,
+    help="Show heatmap of which image regions the model focuses on (interpretability)"
 )
 
 # Model mapping
@@ -57,17 +61,18 @@ uploaded_file = st.file_uploader(
 
 if uploaded_file is not None:
     # Display image
-    col1, col2 = st.columns(2)
+    image = Image.open(uploaded_file)
 
-    with col1:
-        st.subheader("📷 Input Image")
-        image = Image.open(uploaded_file)
-        st.image(image, use_container_width=True)
+    if st.button("Predict", type="primary"):
+        col1, col2 = st.columns(2)
 
-    with col2:
-        st.subheader("🔮 Predictions")
+        with col1:
+            st.subheader("📷 Input Image")
+            st.image(image, use_container_width=True)
 
-        if st.button("Predict", type="primary"):
+        with col2:
+            st.subheader("🔮 Predictions")
+
             with st.spinner(f"Loading model and making predictions..."):
                 try:
                     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
@@ -83,6 +88,7 @@ if uploaded_file is not None:
 
                         # Preprocess
                         inputs = processor(images=image, return_tensors="pt")
+                        input_tensor = inputs["pixel_values"].to(device)
                         inputs = {k: v.to(device) for k, v in inputs.items()}
 
                     else:  # timm models
@@ -102,8 +108,8 @@ if uploaded_file is not None:
                             )
                         ])
 
-                        img_tensor = transform(image.convert('RGB')).unsqueeze(0).to(device)
-                        inputs = {"pixel_values": img_tensor}
+                        input_tensor = transform(image.convert('RGB')).unsqueeze(0).to(device)
+                        inputs = {"pixel_values": input_tensor}
 
                     model = model.to(device)
                     model.eval()
@@ -136,6 +142,58 @@ if uploaded_file is not None:
 
                     st.success(f"✅ Predicted using **{model_choice}** on {device}")
 
+                    # Grad-CAM visualization
+                    if enable_gradcam:
+                        st.markdown("---")
+                        st.markdown("### 🎨 Grad-CAM Visualization")
+
+                        with st.spinner("Generating Grad-CAM heatmap..."):
+                            try:
+                                from pytorch_grad_cam import GradCAM
+                                from pytorch_grad_cam.utils.model_targets import ClassifierOutputTarget
+                                from pytorch_grad_cam.utils.image import show_cam_on_image
+
+                                # Get target layer
+                                model_name = model_config["name"].lower()
+                                if 'vit' in model_name:
+                                    # For ViT, use the last layer norm
+                                    target_layers = [model.vit.layernorm]
+                                elif 'mobilenet' in model_name or 'efficientnet' in model_name or 'resnet' in model_name:
+                                    # For CNNs, use the last convolutional layer
+                                    target_layers = []
+                                    for module in model.modules():
+                                        if isinstance(module, nn.Conv2d):
+                                            target_layers = [module]
+                                else:
+                                    target_layers = None
+
+                                if target_layers:
+                                    # Prepare image for Grad-CAM
+                                    rgb_img = np.array(image.convert('RGB').resize((224, 224))) / 255.0
+
+                                    # Create Grad-CAM
+                                    cam = GradCAM(model=model, target_layers=target_layers)
+
+                                    # Get the top prediction class
+                                    target_class = top5_indices[0][0].item()
+                                    targets = [ClassifierOutputTarget(target_class)]
+
+                                    # Generate CAM
+                                    grayscale_cam = cam(input_tensor=input_tensor, targets=targets)
+                                    grayscale_cam = grayscale_cam[0, :]
+
+                                    # Create visualization
+                                    visualization = show_cam_on_image(rgb_img, grayscale_cam, use_rgb=True)
+
+                                    # Display Grad-CAM
+                                    st.image(visualization, caption=f"Grad-CAM for '{labels[target_class].title()}'", use_container_width=True)
+                                    st.info("💡 **Tip**: Red/yellow regions show where the model focused most to make its prediction.")
+                                else:
+                                    st.warning("⚠️ Grad-CAM not available for this model architecture.")
+
+                            except Exception as e:
+                                st.warning(f"⚠️ Grad-CAM generation failed: {str(e)}")
+
                 except Exception as e:
                     st.error(f"Error: {str(e)}")
                     import traceback
@@ -151,7 +209,7 @@ This is a simplified demo of **AutoML Forge**, showcasing pre-trained models for
 **Full Platform Features** (see [GitHub](https://github.com/kitsakisGk/AutoML-Forge)):
 - 🤖 **Custom Training**: Train on your own datasets
 - 📊 **AutoML**: Automatic model selection and training
-- 🎨 **Grad-CAM**: Model interpretability with heatmaps
+- 🎨 **Grad-CAM**: Model interpretability with heatmaps ✅ **Available in this demo!**
 - 📈 **Confusion Matrix**: Per-class performance metrics
 - 💾 **Model Export**: Download trained models
 - 🔄 **MLflow Tracking**: Experiment versioning
